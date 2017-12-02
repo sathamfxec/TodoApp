@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <div style="margin-top: 10px;" class="container todo">
+    <div class="row">
+      <table *ngIf="groups.length" class="table table-bordered">
+        <thead>
+          <tr>  
+            <th>S No</th>
+            <th>Title</th>
+            <th>UserId</th>
+            <th>Status</th>          
+          </tr>
+        </thead>
+    
+        <tbody>
+
+          <tr *ngFor="let todo of groups;let i=index">
+            <td scope="row">{{ i + 1 }}</td>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.userId }}</td>
+            
+            <td class="strike" *ngIf="todo.completed else notcompleted;">
+              Completed
+            </td>
+
+            <ng-template #notcompleted>
+              <td>
+                Not Completed
+              </td>
+            </ng-template>            
+          </tr>                          
+                     
+        </tbody>
+      </table>
+      
+      <div *ngIf="!groups.length">
+        No Data Found.
+      </div>
+
+    </div>
+  </div>
+</html>
